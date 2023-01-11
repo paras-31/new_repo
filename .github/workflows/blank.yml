@@ -39,10 +39,10 @@ jobs:
 
       - name: terraform init
         run: |
-             terraform init  
+          terraform init  
       - name: terraform plan
         run: |
-            terraform plan
+          terraform plan
 
 
 
