@@ -44,7 +44,7 @@ jobs:
 
             aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
 
-            aws-region: ${{ env.region }}
+            aws-region: ${{ env.aws_region }}
 
 
 
@@ -62,8 +62,6 @@ jobs:
 
           run: |
 
-            cd modules
-
             terraform plan
 
         
@@ -71,9 +69,6 @@ jobs:
         - name: terraform apply
 
           run: |
-
-            cd modules
-
              terraform apply -auto-approve
 
 
