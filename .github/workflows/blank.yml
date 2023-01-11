@@ -52,8 +52,6 @@ jobs:
 
           run: |
 
-            cd modules
-
             terraform init
 
       
