@@ -14,35 +14,67 @@ env:
 
 jobs:
 
-  terraform_actions:
+news3bucket :
 
-    name: terraform
-    runs-on: ubuntu-latest
+    runs-on : ubuntu-latest
+
     steps:
-      - name: CheckOuts
-        uses: actions/checkout@v3
-      - name: set up terraform hasicrop
-        uses: hashicorp/setup-terraform@v1
+
+      - uses: actions/checkout@v3
+
+      - name: Terraform hashicorp setup
+
+        uses: hashicorp/setup-terraform@v2
 
         with:
+
           terraform_version: 1.1.7
 
 
-      - name: configure aws cridentials
+
+      - name: Configure AWS Credentials
+
         uses: aws-actions/configure-aws-credentials@v1
+
         with:
+
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{env.aws_region}}
+
+          aws-region: ${{ env.region }}
+
 
 
       - name: terraform init
+
         run: |
-          terraform init  
+
+          cd modules
+
+          terraform init
+
+     
+
       - name: terraform plan
+
         run: |
+
+          cd modules
+
           terraform plan
+
+       
+
+      - name: terraform apply
+
+        run: |
+
+          cd modules
+
+          terraform apply -auto-approve
 
 
 
