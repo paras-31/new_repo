@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "bucket" {
   tags = {
     Name        = "My bucket"
     owner =   "paras.kamboj@cloudeq.com"
-    purpose =   "traning"
+    purpose =   "traningb6"
   }
 }
 
