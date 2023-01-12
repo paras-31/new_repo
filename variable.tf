@@ -1,7 +1,7 @@
-# variable "bucket" {
-#   type = string
-# }
+variable "bucket" {
+  type = string
+}
 
-# variable "tags" {
-#   type = list(any)
-# }
+variable "tags" {
+  type = list(any)
+}
