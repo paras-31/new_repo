@@ -51,7 +51,7 @@ jobs:
         - name: terraform init
 
           run: |
-
+            cd module
             terraform init
 
       
@@ -59,7 +59,7 @@ jobs:
         - name: terraform plan
 
           run: |
-
+            cd module
             terraform plan
 
         
@@ -67,11 +67,11 @@ jobs:
         - name: terraform apply
 
           run: |
-             terraform apply -auto-approve
+            cd module 
+            terraform apply -auto-approve
 
 
 
-# -backend-config="bucket=$BUCKET" -backend-config="key=$TFSTATE_FILE"
   # job2:
   #   need: terraform_actions
   #   name: terraform
