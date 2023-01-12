@@ -1,5 +1,5 @@
 module "s3" {
-  source = "../"
+  source = "../s3"
   bucket = "parasnewbuc"
   tags = [ "paraskamboj","paras.kamboj@cloudeq.com","traning" ]
 }
