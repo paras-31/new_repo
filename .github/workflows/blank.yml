@@ -104,11 +104,13 @@ jobs:
         run: |
 
           terraform init -reconfigure -backend-config="bucket=$BUCKET" -backend-config="key=$TFSTATE_FILE"
-
+      
+      - name: terraform plan
         run: |
 
           terraform plan
 
+      - name: terraform apply
         run: |
 
           terraform apply
