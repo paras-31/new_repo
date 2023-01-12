@@ -79,7 +79,7 @@ jobs:
 
 
   upload_file:
-    need: terraform_actions
+    need: news3bucket
     name: terraform
     runs-on: ubuntu-latest
     steps:
