@@ -14,7 +14,7 @@ on:
 
 
 env:
-  BUCKET: parasnewbuc1
+  BUCKET: parasnewbuc
   TFSTATE_FILE: S3.tfstate
   aws_region: ${{ github.event.inputs.region }}
 
