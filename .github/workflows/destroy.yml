@@ -5,7 +5,7 @@ name: destroy
 on:
   workflow_dispatch:
 env:
-  BUCKET: parasnewbuc
+  BUCKET: parasnewbuc1
   TFSTATE_FILE: S3.tfstate
   aws_region: ap-south-1
 
@@ -34,7 +34,8 @@ jobs:
         - name: terraform plan
           run: |
             cd module
-            terraform init
+            terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+            
         - name: destroy
           run: |
             cd module
