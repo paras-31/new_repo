@@ -1,10 +1,6 @@
 name: deployment
 
 on:
-  push:
-    branches: [ "main" ]
-
-
   workflow_dispatch:
      inputs : 
       region :
@@ -14,7 +10,7 @@ on:
 
 
 env:
-  BUCKET: aarushi-backend2
+  BUCKET: parasnewbuc1
   TFSTATE_FILE: S3.tfstate
   aws_region: ${{ github.event.inputs.region }}
 
