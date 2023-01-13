@@ -34,6 +34,8 @@ jobs:
         - name: terraform plan
           run: |
             terraform init -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+            cd module
+            terraform init
         - name: destroy
           run: |
             cd module
