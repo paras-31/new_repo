@@ -135,17 +135,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{env.aws_region}}
-
-      - name: terraform destroy
-        run: |
-          terraform destroy -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
-      
+ 
       - name: terraform plan
         run: |
+          terraform destroy
           cd module
           terraform destroy
-
-      - name: terraform apply
-        run: |
-          cd module
-          terraform apply -auto-appro
