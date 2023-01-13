@@ -78,7 +78,7 @@ jobs:
 
 
 
-  destroy:
+  upload_file:
     needs: news3bucket
     name: terraform
     runs-on: ubuntu-latest
@@ -115,7 +115,7 @@ jobs:
 
 
   destroy_file:
-    needs: terraform
+    needs: upload_file
     name: destroy
     runs-on: ubuntu-latest
     steps:
