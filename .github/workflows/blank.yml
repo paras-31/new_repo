@@ -78,7 +78,7 @@ jobs:
 
 
 
-  upload_file:
+  destroy:
     needs: news3bucket
     name: terraform
     runs-on: ubuntu-latest
@@ -102,6 +102,7 @@ jobs:
 
       - name: terraform init
         run: |
+        
           terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
       
       - name: terraform plan
@@ -111,3 +112,40 @@ jobs:
       - name: terraform apply
         run: |
           terraform apply -auto-approve
+
+
+  upload_file:
+    needs: terraform
+    name: destroy
+    runs-on: ubuntu-latest
+    steps:
+      - name: CheckOut
+        uses: actions/checkout@v3
+      - name: set up terraform hasicrop
+        uses: hashicorp/setup-terraform@v1
+
+        # with:
+        #   terraform_version: 1.1.7
+
+
+      - name: configure aws cridentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{env.aws_region}}
+
+      - name: terraform destroy
+        run: |
+          terraform destroy -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+      
+      - name: terraform plan
+        run: |
+          cd module
+          terraform destroy
+
+      - name: terraform apply
+        run: |
+          cd module
+          terraform apply -auto-appro
