@@ -39,5 +39,5 @@ jobs:
         - name: destroy
           run: |
             cd module
-            terraform destroy
+            terraform destroy -auto-approve
 
