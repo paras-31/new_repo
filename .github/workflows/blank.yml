@@ -114,7 +114,7 @@ jobs:
           terraform apply -auto-approve
 
 
-  upload_file:
+  destroy_file:
     needs: terraform
     name: destroy
     runs-on: ubuntu-latest
