@@ -5,7 +5,7 @@ name: destroy
 on:
   workflow_dispatch:
 env:
-  BUCKET: parasnewbuc1
+  BUCKET: parasnewbuc
   TFSTATE_FILE: S3.tfstate
   aws_region: ap-south-1
 
